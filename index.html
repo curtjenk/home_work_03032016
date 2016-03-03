@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<!-- <link rel="stylesheet" type="text/css" href="js/scripts.js"> -->
+		<style type="text/css">
+			body {
+				width: 70%;
+				margin: auto;
+			}
+			#instructions {
+				background-color: lightblue;
+				width: 80%;
+				margin: auto;
+				margin-bottom: 20px;
+			}
+			#choose {
+				margin-top: 50px;
+				width: 80%;
+				margin: auto;
+			}
+			input {
+				background-color: green;
+				border-radius: 10px;
+				/*text-align: center;*/
+				width: 35%;
+				display: inline-block;
+				/*float: left;*/
+				/*padding: px;*/
+			}
+			#the-fight {
+				display: none;
+				margin: auto;
+			}
+
+			#the-fight input {
+				display: block;
+				width: 80%;
+			}
+
+			#footer {
+				background-color: red;
+				text-align: center;
+				color: white;
+				width: 100%;
+				max-width: 80%;
+				margin-top: 20px;
+				font-size: 24px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<img name="dragonMan" src="img/dragon.png">
+		<div id="instructions">
+			The dragon is upon you Sir knight!  You must choose to fight or flee!!  Be warned ... if you choose to fight you must roll a 9 or higher (total of both die) or you will be burned to a royal crisp!  CHOOSE WISELY
+		</div>
+		<div id="choose">
+			<input class="choice" type="button" onclick="fight();" value="I Will Fight!"></input>
+			<input class="choice" type="button" onclick="run();" value="I'm out of here!"></input>
+		</div>
+
+		<div id="the-fight">
+			<img src="img/d1.gif" name="myDie1">
+			<img src="img/d1.gif" name="myDie2">
+			<input type="button" onclick="throwDice('img/');" value="Throw Dice"></input>
+		</div>
+
+		<div id="footer"></div>
+		
+		<script type="text/javascript">
+
+			function fight() {
+				document.getElementById('the-fight').style.display = "inline-block";
+			}
+
+			function run() {
+				document.images['dragonMan'].src = "img/fleeing.png";
+				document.getElementById('footer').innerHTML = "You are a cowardly knight not fit to serve the kingdom!!!";
+			}
+
+			function throwDice(imgPath) {
+				document.getElementById('footer').innerHTML = "";
+				var count = 0;
+				var dieNum1 = getRandomDieNumber();
+				var dieNum2 = getRandomDieNumber();
+				count = dieNum1 + dieNum2;
+
+				document.images['myDie1'].src = getDie(imgPath, dieNum1);
+				document.images['myDie2'].src = getDie(imgPath, dieNum2);
+
+				if (count > 8)
+				{
+					document.getElementById('footer').innerHTML = "Congratulation! You rolled " + count;
+				}
+				else
+				{
+					document.getElementById('footer').innerHTML = "You rolled " + count + " therefore you are burned to a crisp.  Sorry brave knight!s";
+				}
+			}
+
+			function getDie(path, num) {
+				return path + "d" + num + ".gif";
+			}
+
+			function getRandomDieNumber() {
+				return Math.round(Math.random()*5) + 1;
+			}
+			
+
+		</script>
+	</body>
+</html>
