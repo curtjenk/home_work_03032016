@@ -8,6 +8,14 @@
 				width: 70%;
 				margin: auto;
 			}
+			img {
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+			}
+			img[name="dragonMan"] {
+				max-width: 50%;
+			}
 			#wrapper {
 				width: 100;
 				margin: auto;
@@ -15,35 +23,63 @@
 			#instructions {
 				background-color: lightblue;
 				width: 80%;
-				margin: auto;
+				margin-left: auto;
+				margin-right: auto;
 				margin-bottom: 20px;
 			}
 			#choose {
-				margin-top: 50px;
-				width: 80%;
-				margin: auto;
+				overflow: hidden;
+				background-color: white;
+				margin-bottom: 10px;
+				width: 60%;
+				height: 10%;
+				margin-left: auto;
+				margin-right: auto;
 			}
 			.choice {
 				background-color: green;
 				border-radius: 10px;
-				/*text-align: center;*/
-				width: 35%;
-				display: inline-block;
-				/*float: left;*
-				/*padding: px;*/
+				width: 40%;
+				padding: 5px;
 			}
+			
+			#choice1 {
+				float: left;
+			}
+			#choice2 {
+				float: right;
+			}
+			
 			#the-fight {
 				display: none;
-				padding-top: 20px;
-				padding-left: 20%;
-				padding-right: 20%;
-				/*margin-left: auto;*/
-				/*margin-right: auto;*/
+				overflow: hidden;
+				width: 15%;
+				margin-top: 5px;
+				margin-left: auto;
+				margin-right: auto;
 			}
-			#the-fight input {
-				/*display: block;*/
-				width: 80%;
+			#dice {
+				/*width: 15%;*/
+				margin-left: auto;
+				margin-right: auto;
+				overflow: hidden;
 			}
+			#dice img[name="myDie1"] {
+				float: left;
+				/*margin-left: 5px;*/
+			}
+			#dice img[name="myDie2"] {
+				float: right;
+			}
+			#rollBtn {
+				width: 100%;
+				background-color: green;
+				border-radius: 10px;
+				/*width: 20%;*/
+				margin-left: auto;
+				margin-right: auto;
+			}
+			
 			#footer {
 				background-color: red;
 				text-align: center;
@@ -51,35 +87,37 @@
 				width: 100%;
 				max-width: 80%;
 				margin-top: 20px;
+				margin-left: auto;
+				margin-right: auto;
 				font-size: 24px;
 			}
-			img {
-				/*display: block;*/
-
-			}
+			
 			
 		</style>
 	</head>
 	<body>
-		<img name="dragonMan" src="img/dragon.png">
-		<div id="instructions">
-			The dragon is upon you Sir knight!  You must choose to fight or flee!!  Be warned ... if you choose to fight you must roll a 9 or higher (total of both die) or you will be burned to a royal crisp!  CHOOSE WISELY
-		</div>
 		<div id="wrapper">
+			<img name="dragonMan" src="img/dragon.png">
+			<div id="instructions">
+				The dragon is upon you Sir knight!  You must choose to fight or flee!!  Be warned ... if you choose to fight you must roll a 9 or higher (total of both die) or you will be burned to a royal crisp!  CHOOSE WISELY
+			</div>
+			
 			<div id="choose">
-				<input class="choice" type="button" onclick="fight();" value="I Will Fight!"></input>
-				<input class="choice" type="button" onclick="run();" value="I'm out of here!"></input>
+				<input class="choice" id="choice1" type="button" onclick="fight();" value="I Will Fight!"></input>
+				<input class="choice" id="choice2" type="button" onclick="run();" value="I'm out of here!"></input>
 			</div>
 			<div id="the-fight">
-				<img src="img/d1.gif" name="myDie1">
-				<img src="img/d1.gif" name="myDie2">
-				<input class="choice" type="button" onclick="throwDice('img/');" value="Throw Dice"></input>
+				<div id="dice">
+					<img src="img/d1.gif" name="myDie1">
+					<img src="img/d1.gif" name="myDie2">
+				</div>
+				<input id="rollBtn" type="button" onclick="throwDice('img/');" value="Throw Dice"></input>
 			</div>
 			<div id="footer"></div>
 		</div>
 		<script type="text/javascript">
 			function fight() {
-				document.getElementById('the-fight').style.display = "inline-block";
+				document.getElementById('the-fight').style.display = "block";
 			}
 			function run() {
 				document.images['dragonMan'].src = "img/fleeing.png";
